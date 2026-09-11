@@ -1,0 +1,23 @@
+{
+  "name": "bldy-web",
+  "version": "1.0.0",
+  "description": "## Template selection The project uses **TemplateMo 282 Building** as the free template reference/base direction because TemplateMo states the template is free for commercial and non-commercial use.",
+  "main": "index.js",
+  "scripts": {
+  "dev": "live-server --host=0.0.0.0 --no-browser --port=8081",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cjcboy25/bldy-web.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cjcboy25/bldy-web/issues"
+  },
+  "homepage": "https://github.com/cjcboy25/bldy-web#readme",
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  }
+}
