@@ -4,9 +4,9 @@
   "description": "## Template selection The project uses **TemplateMo 282 Building** as the free template reference/base direction because TemplateMo states the template is free for commercial and non-commercial use.",
   "main": "index.js",
   "scripts": {
-    "dev": "astro dev --host 0.0.0.0 --port 8081",
+    "dev": "astro dev --host 0.0.0.0 --port 4321",
     "build": "astro build",  
-    "preview": "astro preview --host 0.0.0.0 --port 8081"
+    "preview": "astro preview --host 0.0.0.0 --port 4321"
   },
   "repository": {
     "type": "git",
