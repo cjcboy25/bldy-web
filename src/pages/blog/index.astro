@@ -1,0 +1,39 @@
+---
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('blog', ({ data }) => !data.draft);
+---
+
+<html lang="en">
+  <head>
+    <title>Buildly Blog</title>
+    <meta
+      name="description"
+      content="Construction insights, guides and resources from Buildly."
+    />
+  </head>
+
+  <body>
+    <main>
+      <h1>Buildly Blog</h1>
+
+      {
+        posts.map((post) => (
+          <article>
+            <h2>
+              <a href={`/blog/${post.id}/`}>
+                {post.data.title}
+              </a>
+            </h2>
+
+            <p>{post.data.description}</p>
+
+            <p>
+              {post.data.category} · {post.data.author}
+            </p>
+          </article>
+        ))
+      }
+    </main>
+  </body>
+</html>
