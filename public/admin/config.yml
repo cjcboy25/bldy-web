@@ -1,0 +1,78 @@
+backend:
+  name: github
+  repo: cjcboy25/bldy-web
+  branch: dev
+
+publish_mode: editorial_workflow
+
+media_folder: public/uploads
+public_folder: /uploads
+
+site_url: https://dev1.buildly.ph
+display_url: https://dev1.buildly.ph
+
+collections:
+  - name: blog
+    label: Blog
+    folder: src/content/blog
+    create: true
+    slug: "{{slug}}"
+    format: frontmatter
+    extension: md
+
+    fields:
+      - label: Title
+        name: title
+        widget: string
+
+      - label: Description
+        name: description
+        widget: text
+
+      - label: Publication Date
+        name: pubDate
+        widget: datetime
+        format: "YYYY-MM-DD"
+
+      - label: Updated Date
+        name: updatedDate
+        widget: datetime
+        required: false
+        format: "YYYY-MM-DD"
+
+      - label: Author
+        name: author
+        widget: string
+
+      - label: Category
+        name: category
+        widget: string
+
+      - label: Tags
+        name: tags
+        widget: list
+        required: false
+
+      - label: Featured Image
+        name: featuredImage
+        widget: image
+        required: false
+
+      - label: SEO Title
+        name: seoTitle
+        widget: string
+        required: false
+
+      - label: SEO Description
+        name: seoDescription
+        widget: text
+        required: false
+
+      - label: Draft
+        name: draft
+        widget: boolean
+        default: true
+
+      - label: Body
+        name: body
+        widget: markdown

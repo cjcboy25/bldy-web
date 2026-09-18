@@ -1,13 +1,15 @@
 import { defineConfig } from 'astro/config';
+import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  build: {
-    format: 'file'
-  },
-  
+  integrations: [
+    sitemap()
+  ],
+
   server: {
     port: 4321,
     host: true
-  },  
-site: 'https://dev1.buildly.ph'
+  },
+
+  site: 'https://dev1.buildly.ph'
 });

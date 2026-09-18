@@ -1,24 +1,40 @@
 ---
+import SEO from '../components/SEO.astro';
+
 export interface Props {
   title: string;
   description?: string;
+  canonical?: string;
+  image?: string;
+  type?: 'website' | 'article';
+  noindex?: boolean;
 }
 
 const {
   title,
-  description = "Buildly — connecting construction clients with contractors and construction services."
+  description = "Buildly — connecting construction clients with contractors and construction services.",
+  canonical,
+  image,
+  type = 'website',
+  noindex = false
 } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en-PH">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
 
-    <title>{title}</title>
-    <meta name="description" content={description} />
-
+    <SEO
+      title={title}
+      description={description}
+      canonical={canonical}
+      image={image}
+      type={type}
+      noindex={noindex}
+    />
+    <link rel="stylesheet" href="/assets/css/style.css" />
     <link rel="icon" href="/favicon.ico" />
   </head>
 

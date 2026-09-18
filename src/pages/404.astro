@@ -1,0 +1,32 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Page Not Found | Buildly"
+  description="The page you're looking for could not be found on Buildly."
+  canonical="/404/"
+  noindex={true}
+>
+  <main>
+    <section class="section">
+      <div class="container">
+        <div class="center">
+          <div class="eyebrow">404</div>
+
+          <h1>Page not found.</h1>
+
+          <p class="muted">
+            The Buildly page you're looking for doesn't exist or may have moved.
+          </p>
+
+          <p>
+            <a class="btn btn-primary" href="/">
+              Return to Buildly Home
+            </a>
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
