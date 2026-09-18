@@ -1,6 +1,6 @@
 backend:
-  name: github
-  repo: cjcboy25/bldy-web
+  name: turbo-github
+  turbo_site_id: fa61955f-7b2f-453d-b7af-7e7823d9d451
   branch: dev
 
 publish_mode: editorial_workflow
