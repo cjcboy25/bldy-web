@@ -1,14 +1,15 @@
 ---
-title: "Buildly Test Article"
-description: "A test article for the Buildly content system."
+title: Buildly Test Article
+description: A test article for the Buildly content system.
 pubDate: 2026-09-15
-author: "Buildly"
-category: "Construction"
+author: Buildly
+category: Construction
 tags:
   - construction
   - buildly
-seoTitle: "Buildly Test Article"
-seoDescription: "A test article for the Buildly SEO content system."
+featuredImage: /uploads/test-const1.jpeg
+seoTitle: Buildly Test Article
+seoDescription: A test article for the Buildly SEO content system.
 draft: false
 ---
 
