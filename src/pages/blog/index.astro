@@ -1,39 +1,174 @@
 ---
 import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import '../../styles/blog.css';
 
-const posts = await getCollection('blog', ({ data }) => !data.draft);
+const posts = await getCollection(
+  'blog',
+  ({ data }) => !data.draft
+);
+
+const sortedPosts = posts.sort(
+  (a, b) =>
+    b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+
+const featuredPost = sortedPosts[0];
+const latestPosts = sortedPosts.slice(1);
 ---
 
-<html lang="en">
-  <head>
-    <title>Buildly Blog</title>
-    <meta
-      name="description"
-      content="Construction insights, guides and resources from Buildly."
-    />
-  </head>
+<BaseLayout
+  title="Buildly Blog | Construction Insights & Guides"
+  description="Construction insights, practical guides and resources for project owners and contractors in the Philippines."
+  canonical="/blog/"
+  noindex={true}
+>
 
-  <body>
-    <main>
-      <h1>Buildly Blog</h1>
+  <main class="blog-page">
 
-      {
-        posts.map((post) => (
-          <article>
+    <header class="blog-hero">
+
+      <div class="blog-eyebrow">
+        Buildly Insights
+      </div>
+
+      <h1>
+        Construction ideas that help you build better.
+      </h1>
+
+      <p>
+        Practical guides, construction insights and useful
+        resources for project owners and contractors in the Philippines.
+      </p>
+
+    </header>
+
+
+    {
+      featuredPost && (
+        <section class="blog-featured">
+
+          <div class="blog-featured-image">
+
+            {
+              featuredPost.data.featuredImage ? (
+                <img
+                  src={featuredPost.data.featuredImage}
+                  alt={featuredPost.data.title}
+                />
+              ) : (
+                <div aria-hidden="true"></div>
+              )
+            }
+
+          </div>
+
+          <div class="blog-featured-content">
+
+            <div class="blog-category">
+              {featuredPost.data.category}
+            </div>
+
             <h2>
-              <a href={`/blog/${post.id}/`}>
-                {post.data.title}
+              <a href={`/blog/${featuredPost.id}/`}>
+                {featuredPost.data.title}
               </a>
             </h2>
 
-            <p>{post.data.description}</p>
-
-            <p>
-              {post.data.category} · {post.data.author}
+            <p class="blog-description">
+              {featuredPost.data.description}
             </p>
-          </article>
-        ))
-      }
-    </main>
-  </body>
-</html>
+
+            <div class="blog-meta">
+              {featuredPost.data.author}
+              ·
+              {featuredPost.data.pubDate.toLocaleDateString('en-PH', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+              })}
+            </div>
+
+            <a
+              class="blog-read-link"
+              href={`/blog/${featuredPost.id}/`}
+            >
+              Read article →
+            </a>
+
+          </div>
+
+        </section>
+      )
+    }
+
+
+    {
+      latestPosts.length > 0 && (
+        <section>
+
+          <div class="blog-section-heading">
+            <h2>Latest Articles</h2>
+          </div>
+
+          <div class="blog-grid">
+
+            {
+              latestPosts.map((post) => (
+                <article class="blog-card">
+
+                  <div class="blog-card-image">
+
+                    {
+                      post.data.featuredImage && (
+                        <img
+                          src={post.data.featuredImage}
+                          alt={post.data.title}
+                        />
+                      )
+                    }
+
+                  </div>
+
+                  <div class="blog-category">
+                    {post.data.category}
+                  </div>
+
+                  <h3>
+                    <a href={`/blog/${post.id}/`}>
+                      {post.data.title}
+                    </a>
+                  </h3>
+
+                  <p class="blog-description">
+                    {post.data.description}
+                  </p>
+
+                  <div class="blog-meta">
+                    {post.data.pubDate.toLocaleDateString('en-PH', {
+                      year: 'numeric',
+                      month: 'short',
+                      day: 'numeric'
+                    })}
+                  </div>
+
+                  <a
+                    class="blog-read-link"
+                    href={`/blog/${post.id}/`}
+                  >
+                    Read article →
+                  </a>
+
+                </article>
+              ))
+            }
+
+          </div>
+
+        </section>
+      )
+    }
+
+  </main>
+
+</BaseLayout>

@@ -58,6 +58,12 @@ collections:
         widget: image
         required: false
 
+      - label: Image Caption
+        name: imageCaption
+        widget: string
+        required: false
+        hint: "Short caption displayed below the featured image."
+
       - label: SEO Title
         name: seoTitle
         widget: string
@@ -75,4 +81,18 @@ collections:
 
       - label: Body
         name: body
-        widget: markdown
+        widget: richtext
+        buttons:
+          - bold
+          - italic
+          - strikethrough
+          - link
+          - heading-two
+          - heading-three
+          - heading-four
+          - quote
+          - bulleted-list
+          - numbered-list
+        editor_components:
+          - image
+          - code-block
