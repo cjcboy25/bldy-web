@@ -7,7 +7,7 @@ author: Buildly
 category: Construction Planning
 tags:
   - home renovation construction Philippines planning
-featuredImage: /uploads/images.jpeg
+featuredImage: /uploads/test-const1.jpeg
 seoTitle: What Should Be Included in a Construction Project Budget? | Buildly
 seoDescription: Learn the major cost components to consider when preparing a
   construction project budget, including materials, labor, equipment, permits
