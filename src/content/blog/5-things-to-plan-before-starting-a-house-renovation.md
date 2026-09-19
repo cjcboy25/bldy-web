@@ -1,6 +1,7 @@
 ---
 title: 5 Things to Plan Before Starting a House Renovation
-description: 5 Things to Plan Before Starting a House Renovation
+description: A practical guide to planning your renovation before construction
+  begins, from defining the scope of work to preparing your budget and timeline.
 pubDate: 2026-09-18
 author: Buildly
 category: Home Renovation
@@ -11,7 +12,7 @@ seoTitle: 5 Things to Plan Before Starting a House Renovation | Buildly
 seoDescription: Learn five important things Philippine homeowners should plan
   before starting a house renovation, including scope, budget, materials,
   contractors and timelines.
-draft: false
+draft: true
 ---
 # 5 Things to Plan Before Starting a House Renovation
 
