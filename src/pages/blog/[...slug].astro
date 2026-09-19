@@ -4,7 +4,10 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import '../../styles/blog.css';
 
 export async function getStaticPaths() {
-  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  const posts = await getCollection(
+    'blog',
+    ({ data }) => !data.draft
+  );
 
   return posts.map((post) => ({
     params: {
@@ -20,7 +23,9 @@ const { post } = Astro.props;
 const { Content } = await render(post);
 
 const title = post.data.seoTitle || post.data.title;
-const description = post.data.seoDescription || post.data.description;
+const description =
+  post.data.seoDescription || post.data.description;
+
 const image = post.data.featuredImage;
 ---
 
@@ -35,73 +40,84 @@ const image = post.data.featuredImage;
 
   <main class="blog-article-page">
 
-    <a class="blog-back" href="/blog/">
-      ← Back to Blog
-    </a>
+    <div class="container">
 
-    <header class="blog-article-header">
-
-      <div class="blog-category">
-        {post.data.category}
-      </div>
-
-      <h1>{post.data.title}</h1>
-
-      <p class="blog-article-description">
-        {post.data.description}
-      </p>
-
-      <div class="blog-article-meta">
-        {post.data.author}
-        ·
-        {post.data.pubDate.toLocaleDateString('en-PH', {
-          year: 'numeric',
-          month: 'long',
-          day: 'numeric'
-        })}
-      </div>
-
-    </header>
-
-    {
-      post.data.featuredImage && (
-        <figure class="blog-hero-image">
-
-          <img
-            src={post.data.featuredImage}
-            alt={post.data.title}
-          />
-
-          {
-            post.data.imageCaption && (
-              <figcaption class="blog-caption">
-                {post.data.imageCaption}
-              </figcaption>
-            )
-          }
-
-        </figure>
-      )
-    }
-
-    <article class="blog-article-content">
-      <Content />
-    </article>
-
-    <section class="blog-cta">
-
-      <h2>Planning a Construction Project?</h2>
-
-      <p>
-        Buildly helps project owners connect with contractors
-        and construction service providers.
-      </p>
-
-      <a href="/">
-        Explore Buildly →
+      <a class="blog-back" href="/blog/">
+        ← Back to Blog
       </a>
 
-    </section>
+      <header class="blog-article-header">
+
+        <div class="blog-category">
+          {post.data.category}
+        </div>
+
+        <h1>
+          {post.data.title}
+        </h1>
+
+        <p class="blog-article-description">
+          {post.data.description}
+        </p>
+
+        <div class="blog-article-meta">
+          {post.data.author}
+          ·
+          {post.data.pubDate.toLocaleDateString('en-PH', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+          })}
+        </div>
+
+      </header>
+
+
+      {
+        post.data.featuredImage && (
+          <figure class="blog-hero-image">
+
+            <img
+              src={post.data.featuredImage}
+              alt={post.data.title}
+            />
+
+            {
+              post.data.imageCaption && (
+                <figcaption class="blog-caption">
+                  {post.data.imageCaption}
+                </figcaption>
+              )
+            }
+
+          </figure>
+        )
+      }
+
+
+      <article class="blog-article-content">
+        <Content />
+      </article>
+
+
+      <section class="blog-cta">
+
+        <h2>
+          Planning a Construction Project?
+        </h2>
+
+        <p>
+          Buildly helps project owners connect with
+          contractors and construction service providers.
+        </p>
+
+        <a href="/">
+          Explore Buildly →
+        </a>
+
+      </section>
+
+    </div>
 
   </main>
 
