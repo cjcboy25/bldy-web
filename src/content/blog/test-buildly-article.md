@@ -11,7 +11,7 @@ tags:
 featuredImage: /uploads/test-const1.jpeg
 seoTitle: Buildly Test Article
 seoDescription: A test article for the Buildly SEO content system.
-draft: false
+draft: true
 ---
 Introduction
 
