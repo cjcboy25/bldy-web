@@ -13,7 +13,7 @@ seoTitle: 5 Things to Plan Before Starting a House Renovation | Buildly
 seoDescription: Planning a house renovation in the Philippines? Learn five
   important things to prepare before construction begins, including scope,
   budget, materials and contractor selection.
-draft: true
+draft: false
 ---
 Planning a house renovation is easier when the important decisions are made before construction begins. A clear plan helps project owners understand the work involved, prepare a realistic budget and communicate expectations with contractors.
 
