@@ -18,14 +18,14 @@ When homeowners review bids and conduct interviews, they look for specific trust
 
 Before looking at design ideas, smart homeowners want to know their investment is safe. They actively look for:
 
-*  Proof that the contractor is registered and legally authorized to do the work in their municipality.
-*  Active general liability and workers' compensation policies to ensure the homeowner isn't liable for accidental damage or injuries.
-*  Itemized estimates with clear cost ranges instead of a single, vague lump sum.
+* Proof that the contractor is registered and legally authorized to do the work in their municipality.
+* Active general liability and workers' compensation policies to ensure the homeowner isn't liable for accidental damage or injuries.
+* Itemized estimates with clear cost ranges instead of a single, vague lump sum.
 
 2. Reputation and Local Social Proof
 
 Homeowners trust the experiences of their peers over any marketing pitch. Contractors stand out when they can showcase:
 
-*  Direct praise for individual team members, project managers, or specific craftsmen.
-*  A proven track record of operating in the same community for several years, which signals reliability.
-*  Industry awards, specialized certifications, or professional memberships that prove dedication to the craft.
+* Direct praise for individual team members, project managers, or specific craftsmen.
+* A proven track record of operating in the same community for several years, which signals reliability.
+* Industry awards, specialized certifications, or professional memberships that prove dedication to the craft.
