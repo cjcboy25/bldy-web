@@ -9,7 +9,8 @@ category: Contractor Selection
 tags:
   - Contractor Selection
 featuredImage: /uploads/images-2-.jpeg
-seoTitle: Find the Right Contractor for
+imageCaption: Find the right contractor
+seoTitle: Find the Right Contractor
 seoDescription: Find the Right Contractor
 draft: false
 ---
