@@ -12,7 +12,7 @@ tags:
   - buildly
 featuredImage: /uploads/images-1-.jpeg
 seoDescription: ""
-draft: false
+draft: true
 ---
 Give too little detail, and you will receive a vague estimate that could skyrocket later. Give too much or say the wrong things, and you might lose your competitive edge. Finding the perfect balance ensures you get an accurate, fair, and competitive bid.
 
