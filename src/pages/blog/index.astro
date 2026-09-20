@@ -1,137 +1,232 @@
 ---
 import { getCollection } from 'astro:content';
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import '../../styles/blog.css';
 
-const posts = await getCollection(
-  'blog',
-  ({ data }) => !data.draft
-);
+const posts = (await getCollection('blog'))
+  .filter((post) => post.data.draft === false)
+  .sort(
+    (a, b) =>
+      b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+  );
 
-const sortedPosts = posts.sort(
-  (a, b) =>
-    b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
-);
+const featured = posts[0];
+const latest = posts.slice(1);
 
-const featuredPost = sortedPosts[0];
-const latestPosts = sortedPosts.slice(1);
+const formatDate = (date: Date) =>
+  date.toLocaleDateString('en-PH', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
 ---
 
-<BaseLayout
-  title="Buildly Blog | Construction Insights & Guides"
-  description="Construction insights, practical guides and resources for project owners and contractors in the Philippines."
-  canonical="/blog/"
-  noindex={true}
->
+<!doctype html>
+<html lang="en-PH">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
 
-  <main class="blog-page">
+    <title>Buildly Insights | Construction Ideas & Guides</title>
 
-    <div class="container">
+    <meta
+      name="description"
+      content="Practical construction guides, project planning advice and useful resources for project owners and contractors in the Philippines."
+    />
 
-      <header class="blog-hero">
+    <meta name="robots" content="noindex,nofollow" />
 
-        <div class="eyebrow blog-eyebrow">
-          Buildly Insights
+    <link rel="canonical" href="https://dev1.buildly.ph/blog/" />
+
+    <meta
+      property="og:title"
+      content="Buildly Insights | Construction Ideas & Guides"
+    />
+    <meta
+      property="og:description"
+      content="Practical construction guides, project planning advice and useful resources for project owners and contractors in the Philippines."
+    />
+    <meta
+      property="og:url"
+      content="https://dev1.buildly.ph/blog/"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Buildly" />
+
+    <link rel="stylesheet" href="/assets/css/style.css" />
+    <link rel="icon" href="/favicon.ico" />
+  </head>
+
+  <body>
+
+    <!-- =========================================
+         TOP BAR
+         ========================================= -->
+
+    <div class="topbar">
+      <div class="site-width topbar-inner">
+        <span>Construction marketplace for the Philippines</span>
+        <span>Project Owner ↔ Contractor</span>
+      </div>
+    </div>
+
+
+    <!-- =========================================
+         MAIN HEADER
+         ========================================= -->
+
+    <header class="site-header">
+      <div class="site-width header-inner">
+
+        <a href="/" class="brand" aria-label="Buildly Home">
+          Build<span>ly</span>
+        </a>
+
+        <nav class="main-nav" aria-label="Main navigation">
+          <a href="/">Home</a>
+          <a href="/how-it-works/">How It Works</a>
+          <a href="/blog/" class="active">Blog</a>
+          <a href="/for-clients/">For Clients</a>
+          <a href="/for-contractors/">For Contractors</a>
+          <a href="/get-started/" class="nav-cta">Get Started</a>
+        </nav>
+
+      </div>
+    </header>
+
+
+    <!-- =========================================
+         BLOG HERO
+         ========================================= -->
+
+    <main>
+
+      <section class="blog-hero">
+        <div class="site-width">
+
+          <div class="eyebrow">
+            BUILDLY INSIGHTS
+          </div>
+
+          <h1>
+            Construction ideas that<br />
+            help you build better.
+          </h1>
+
+          <p class="hero-description">
+            Practical guides, construction insights and useful resources
+            for project owners and contractors in the Philippines.
+          </p>
+
         </div>
-
-        <h1>
-          Construction ideas that help you build better.
-        </h1>
-
-        <p>
-          Practical guides, construction insights and useful
-          resources for project owners and contractors in the Philippines.
-        </p>
-
-      </header>
+      </section>
 
 
-      {
-        featuredPost && (
-          <section class="blog-featured">
+      <!-- =========================================
+           FEATURED ARTICLE
+           ========================================= -->
 
-            <div class="blog-featured-image">
+      {featured && (
+        <section class="featured-section">
+          <div class="site-width">
 
-              {
-                featuredPost.data.featuredImage && (
+            <a
+              href={`/blog/${featured.id}/`}
+              class="featured-card"
+            >
+
+              <div class="featured-image">
+
+                {featured.data.featuredImage ? (
                   <img
-                    src={featuredPost.data.featuredImage}
-                    alt={featuredPost.data.title}
+                    src={featured.data.featuredImage}
+                    alt={featured.data.imageCaption || featured.data.title}
                   />
-                )
-              }
+                ) : (
+                  <div class="image-placeholder">
+                    BUILDLY
+                  </div>
+                )}
 
-            </div>
-
-
-            <div class="blog-featured-content">
-
-              <div class="blog-category">
-                {featuredPost.data.category}
               </div>
 
-              <h2>
-                <a href={`/blog/${featuredPost.id}/`}>
-                  {featuredPost.data.title}
-                </a>
-              </h2>
+              <div class="featured-content">
 
-              <p class="blog-description">
-                {featuredPost.data.description}
-              </p>
+                <div class="article-category">
+                  {featured.data.category}
+                </div>
 
-              <div class="blog-meta">
-                {featuredPost.data.author}
-                ·
-                {featuredPost.data.pubDate.toLocaleDateString('en-PH', {
-                  year: 'numeric',
-                  month: 'long',
-                  day: 'numeric'
-                })}
+                <h2>
+                  {featured.data.title}
+                </h2>
+
+                <p class="featured-description">
+                  {featured.data.description}
+                </p>
+
+                <div class="article-meta">
+                  <span>Buildly</span>
+                  <span>·</span>
+                  <span>{formatDate(featured.data.pubDate)}</span>
+                </div>
+
+                <span class="read-link">
+                  Read article →
+                </span>
+
               </div>
 
-              <a
-                class="blog-read-link"
-                href={`/blog/${featuredPost.id}/`}
-              >
-                Read article →
-              </a>
+            </a>
 
-            </div>
-
-          </section>
-        )
-      }
+          </div>
+        </section>
+      )}
 
 
-      {
-        latestPosts.length > 0 && (
-          <section>
+      <!-- =========================================
+           LATEST ARTICLES
+           ========================================= -->
 
-            <div class="blog-section-heading">
+      {latest.length > 0 && (
+        <section class="latest-section">
+          <div class="site-width">
+
+            <div class="section-heading">
               <h2>Latest Articles</h2>
             </div>
 
-            <div class="blog-grid">
+            <div class="article-grid">
 
-              {
-                latestPosts.map((post) => (
-                  <article class="blog-card">
+              {latest.map((post) => (
 
-                    <div class="blog-card-image">
+                <article class="article-card">
 
-                      {
-                        post.data.featuredImage && (
-                          <img
-                            src={post.data.featuredImage}
-                            alt={post.data.title}
-                          />
-                        )
-                      }
+                  <a
+                    href={`/blog/${post.id}/`}
+                    class="article-image-link"
+                  >
+
+                    <div class="article-image">
+
+                      {post.data.featuredImage ? (
+                        <img
+                          src={post.data.featuredImage}
+                          alt={
+                            post.data.imageCaption ||
+                            post.data.title
+                          }
+                        />
+                      ) : (
+                        <div class="image-placeholder">
+                          BUILDLY
+                        </div>
+                      )}
 
                     </div>
 
-                    <div class="blog-category">
+                  </a>
+
+                  <div class="article-body">
+
+                    <div class="article-category">
                       {post.data.category}
                     </div>
 
@@ -141,37 +236,630 @@ const latestPosts = sortedPosts.slice(1);
                       </a>
                     </h3>
 
-                    <p class="blog-description">
+                    <p>
                       {post.data.description}
                     </p>
 
-                    <div class="blog-meta">
-                      {post.data.pubDate.toLocaleDateString('en-PH', {
-                        year: 'numeric',
-                        month: 'short',
-                        day: 'numeric'
-                      })}
+                    <div class="article-date">
+                      {formatDate(post.data.pubDate)}
                     </div>
 
                     <a
-                      class="blog-read-link"
                       href={`/blog/${post.id}/`}
+                      class="read-link"
                     >
                       Read article →
                     </a>
 
-                  </article>
-                ))
-              }
+                  </div>
+
+                </article>
+
+              ))}
 
             </div>
 
-          </section>
-        )
+          </div>
+        </section>
+      )}
+
+    </main>
+
+
+    <!-- =========================================
+         FOOTER
+         ========================================= -->
+
+    <footer class="site-footer">
+
+      <div class="site-width footer-grid">
+
+        <div class="footer-brand">
+
+          <a href="/" class="brand footer-logo">
+            Build<span>ly</span>
+          </a>
+
+          <p>
+            Connecting construction project owners with contractors
+            and construction services across the Philippines.
+          </p>
+
+        </div>
+
+
+        <div class="footer-column">
+
+          <h3>Explore</h3>
+
+          <a href="/how-it-works/">How It Works</a>
+          <a href="/blog/">Blog</a>
+          <a href="/for-clients/">For Clients</a>
+          <a href="/for-contractors/">For Contractors</a>
+
+        </div>
+
+
+        <div class="footer-column">
+
+          <h3>Get Started</h3>
+
+          <a href="/get-started/">Post a Project</a>
+          <a href="/get-started/">Find Contractors</a>
+          <a href="/get-started/">Join Buildly</a>
+
+        </div>
+
+
+        <div class="footer-column">
+
+          <h3>Resources</h3>
+
+          <a href="/blog/">Construction Insights</a>
+          <a href="/sitemap-index.xml">Sitemap</a>
+
+        </div>
+
+      </div>
+
+
+      <div class="site-width footer-bottom">
+
+        <span>
+          © {new Date().getFullYear()} Buildly. All rights reserved.
+        </span>
+
+        <span>
+          Construction marketplace for the Philippines
+        </span>
+
+      </div>
+
+    </footer>
+
+
+    <style>
+
+      /* =========================================
+         BUILDLY BLOG PAGE
+         ========================================= */
+
+      :global(*) {
+        box-sizing: border-box;
       }
 
-    </div>
+      :global(body) {
+        margin: 0;
+        color: #14212b;
+        background: #ffffff;
+        font-family:
+          Inter,
+          ui-sans-serif,
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+      }
 
-  </main>
+      :global(a) {
+        color: inherit;
+        text-decoration: none;
+      }
 
-</BaseLayout>
+
+      /* =========================================
+         SHARED WIDTH
+         ========================================= */
+
+      .site-width {
+        width: min(1120px, calc(100% - 40px));
+        margin: 0 auto;
+      }
+
+
+      /* =========================================
+         TOP BAR
+         ========================================= */
+
+      .topbar {
+        background: #0f1820;
+        color: #ffffff;
+        font-size: 13px;
+      }
+
+      .topbar-inner {
+        min-height: 31px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+
+      /* =========================================
+         HEADER
+         ========================================= */
+
+      .site-header {
+        background: #ffffff;
+        border-bottom: 1px solid #dfe4e8;
+      }
+
+      .header-inner {
+        min-height: 73px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 30px;
+      }
+
+      .brand {
+        font-size: 25px;
+        font-weight: 800;
+        letter-spacing: -1.2px;
+        color: #0f1820;
+      }
+
+      .brand span {
+        color: #e8a323;
+      }
+
+      .main-nav {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+      }
+
+      .main-nav a {
+        color: #0f1820;
+        font-size: 14px;
+        font-weight: 700;
+        transition: color 0.2s ease;
+      }
+
+      .main-nav a:hover,
+      .main-nav a.active {
+        color: #e8a323;
+      }
+
+      .main-nav .nav-cta {
+        padding: 16px 21px;
+        border-radius: 9px;
+        background: #e8a323;
+        color: #0f1820;
+      }
+
+      .main-nav .nav-cta:hover {
+        color: #0f1820;
+      }
+
+
+      /* =========================================
+         BLOG HERO
+         ========================================= */
+
+      .blog-hero {
+        padding: 78px 0 58px;
+      }
+
+      .eyebrow,
+      .article-category {
+        color: #536676;
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 1.8px;
+        text-transform: uppercase;
+      }
+
+      .blog-hero h1 {
+        max-width: 850px;
+        margin: 20px 0 22px;
+        color: #14212b;
+        font-size: clamp(48px, 6vw, 72px);
+        line-height: 0.98;
+        letter-spacing: -3.5px;
+        font-weight: 800;
+      }
+
+      .hero-description {
+        max-width: 760px;
+        margin: 0;
+        color: #64727d;
+        font-size: 20px;
+        line-height: 1.55;
+      }
+
+
+      /* =========================================
+         FEATURED ARTICLE
+         ========================================= */
+
+      .featured-section {
+        padding: 0 0 88px;
+      }
+
+      .featured-card {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        overflow: hidden;
+        background: #f6f7f8;
+        border-radius: 22px;
+        transition:
+          transform 0.2s ease,
+          box-shadow 0.2s ease;
+      }
+
+      .featured-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 15px 40px rgba(15, 24, 32, 0.08);
+      }
+
+      .featured-image {
+        min-height: 500px;
+        background: #dfe4e8;
+        overflow: hidden;
+      }
+
+      .featured-image img {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+      }
+
+      .featured-content {
+        padding: 68px 52px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .featured-content h2 {
+        margin: 20px 0 22px;
+        color: #14212b;
+        font-size: clamp(34px, 4vw, 48px);
+        line-height: 1.04;
+        letter-spacing: -1.8px;
+      }
+
+      .featured-description {
+        margin: 0;
+        color: #64727d;
+        font-size: 17px;
+        line-height: 1.65;
+      }
+
+      .article-meta {
+        display: flex;
+        gap: 8px;
+        margin-top: 26px;
+        color: #64727d;
+        font-size: 14px;
+      }
+
+      .read-link {
+        display: inline-block;
+        margin-top: 28px;
+        color: #14212b;
+        font-size: 14px;
+        font-weight: 800;
+      }
+
+      .read-link:hover {
+        color: #e8a323;
+      }
+
+
+      /* =========================================
+         LATEST ARTICLES
+         ========================================= */
+
+      .latest-section {
+        padding: 0 0 100px;
+      }
+
+      .section-heading {
+        margin-bottom: 30px;
+      }
+
+      .section-heading h2 {
+        margin: 0;
+        color: #14212b;
+        font-size: 34px;
+        line-height: 1.1;
+        letter-spacing: -1.2px;
+      }
+
+      .article-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 34px;
+      }
+
+      .article-card {
+        min-width: 0;
+      }
+
+      .article-image-link {
+        display: block;
+      }
+
+      .article-image {
+        height: 220px;
+        overflow: hidden;
+        border-radius: 16px;
+        background: #f6f7f8;
+      }
+
+      .article-image img {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+        transition: transform 0.25s ease;
+      }
+
+      .article-image-link:hover img {
+        transform: scale(1.025);
+      }
+
+      .article-body {
+        padding-top: 24px;
+      }
+
+      .article-body h3 {
+        margin: 12px 0 14px;
+        color: #14212b;
+        font-size: 25px;
+        line-height: 1.1;
+        letter-spacing: -0.8px;
+      }
+
+      .article-body h3 a:hover {
+        color: #e8a323;
+      }
+
+      .article-body p {
+        margin: 0;
+        color: #64727d;
+        font-size: 15px;
+        line-height: 1.65;
+      }
+
+      .article-date {
+        margin-top: 20px;
+        color: #64727d;
+        font-size: 14px;
+      }
+
+
+      /* =========================================
+         IMAGE PLACEHOLDER
+         ========================================= */
+
+      .image-placeholder {
+        width: 100%;
+        height: 100%;
+        display: grid;
+        place-items: center;
+        background: #0f1820;
+        color: #e8a323;
+        font-size: 14px;
+        font-weight: 800;
+        letter-spacing: 2px;
+      }
+
+
+      /* =========================================
+         FOOTER
+         ========================================= */
+
+      .site-footer {
+        margin-top: 20px;
+        padding-top: 70px;
+        background: #0f1820;
+        color: #ffffff;
+      }
+
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+        gap: 60px;
+        padding-bottom: 60px;
+      }
+
+      .footer-logo {
+        color: #ffffff;
+        font-size: 27px;
+      }
+
+      .footer-brand p {
+        max-width: 340px;
+        margin: 20px 0 0;
+        color: #aab5bd;
+        font-size: 14px;
+        line-height: 1.7;
+      }
+
+      .footer-column {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+      }
+
+      .footer-column h3 {
+        margin: 0 0 8px;
+        color: #ffffff;
+        font-size: 13px;
+        letter-spacing: 1.2px;
+        text-transform: uppercase;
+      }
+
+      .footer-column a {
+        color: #aab5bd;
+        font-size: 14px;
+        transition: color 0.2s ease;
+      }
+
+      .footer-column a:hover {
+        color: #e8a323;
+      }
+
+      .footer-bottom {
+        min-height: 72px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.12);
+        color: #84929c;
+        font-size: 12px;
+      }
+
+
+      /* =========================================
+         RESPONSIVE
+         ========================================= */
+
+      @media (max-width: 900px) {
+
+        .header-inner {
+          padding: 18px 0;
+          align-items: flex-start;
+        }
+
+        .main-nav {
+          gap: 16px;
+          flex-wrap: wrap;
+          justify-content: flex-end;
+        }
+
+        .main-nav a {
+          font-size: 13px;
+        }
+
+        .featured-card {
+          grid-template-columns: 1fr;
+        }
+
+        .featured-image {
+          min-height: 360px;
+        }
+
+        .article-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .footer-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+
+      }
+
+
+      @media (max-width: 640px) {
+
+        .site-width {
+          width: min(100% - 28px, 1120px);
+        }
+
+        .topbar-inner {
+          min-height: 36px;
+          font-size: 11px;
+        }
+
+        .header-inner {
+          display: block;
+        }
+
+        .brand {
+          display: inline-block;
+          margin-bottom: 18px;
+        }
+
+        .main-nav {
+          justify-content: flex-start;
+          gap: 12px 18px;
+        }
+
+        .main-nav .nav-cta {
+          padding: 11px 14px;
+        }
+
+        .blog-hero {
+          padding: 52px 0 42px;
+        }
+
+        .blog-hero h1 {
+          font-size: 46px;
+          letter-spacing: -2.4px;
+        }
+
+        .hero-description {
+          font-size: 17px;
+        }
+
+        .featured-section {
+          padding-bottom: 60px;
+        }
+
+        .featured-image {
+          min-height: 270px;
+        }
+
+        .featured-content {
+          padding: 36px 28px 40px;
+        }
+
+        .featured-content h2 {
+          font-size: 34px;
+        }
+
+        .article-grid {
+          grid-template-columns: 1fr;
+          gap: 50px;
+        }
+
+        .article-image {
+          height: 240px;
+        }
+
+        .footer-grid {
+          grid-template-columns: 1fr;
+          gap: 38px;
+        }
+
+        .footer-bottom {
+          padding: 20px 0;
+          flex-direction: column;
+          align-items: flex-start;
+          justify-content: center;
+        }
+
+      }
+
+    </style>
+
+  </body>
+</html>
