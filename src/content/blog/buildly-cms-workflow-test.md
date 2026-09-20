@@ -3,14 +3,14 @@ title: How to Find the Right Contractor for Your Construction Project
 description: Choosing a contractor is an important step in any construction
   project. Learn what project owners should look for when comparing contractors,
   reviewing experience, discussing scope and evaluating proposals.
-pubDate: 2026-09-18
+pubDate: 2026-07-18
 author: Buildly
 category: Contractor Selection
 tags:
   - Contractor Selection
 featuredImage: /uploads/images-2-.jpeg
-seoTitle: Buildly CMS Workflow Test
-seoDescription: Temporary test of the Buildly CMS editorial workflow.
+seoTitle: Find the Right Contractor for
+seoDescription: Find the Right Contractor
 draft: false
 ---
 Start With a Clear Project Scope
@@ -32,8 +32,6 @@ A contractor is only as good as the team they bring to the field. Find out who w
 * Will there be a dedicated Project Manager or Site Engineer supervising the workers daily?
 * Do they employ full-time, skilled foremen and laborers, or do they rely entirely on third-party subcontractors?
 * What safety protocols do they enforce on-site to protect workers and materials?
-
-
 
 Understand the Proposal
 
