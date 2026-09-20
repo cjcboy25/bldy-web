@@ -10,7 +10,7 @@ category: Contractor Selection
 tags:
   - home renovation construction Philippines planning
 featuredImage: /uploads/images-3-.jpeg
-draft: true
+draft: false
 ---
 When homeowners review bids and conduct interviews, they look for specific trust markers that go far beyond the final price tag. Here is a breakdown of what homeowners actually prioritize when making their final decision.
 

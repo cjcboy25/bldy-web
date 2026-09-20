@@ -11,7 +11,7 @@ tags:
 featuredImage: /uploads/images-2-.jpeg
 seoTitle: Buildly CMS Workflow Test
 seoDescription: Temporary test of the Buildly CMS editorial workflow.
-draft: true
+draft: false
 ---
 Start With a Clear Project Scope
 
