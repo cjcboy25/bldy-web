@@ -7,7 +7,7 @@ author: Buildly
 category: Construction Planning
 tags:
   - home renovation construction Philippines planning
-featuredImage: /uploads/test-const1.jpeg
+featuredImage: /uploads/2026-09-20_14-38.png
 seoTitle: What Should Be Included in a Construction Project Budget? | Buildly
 seoDescription: Learn the major cost components to consider when preparing a
   construction project budget, including materials, labor, equipment, permits
@@ -22,12 +22,12 @@ These are costs directly associated with completing the physical work.
 
 Examples include:
 
-- Concrete
-- Steel
-- Masonry
-- Roofing
-- Doors and windows
-- Finishes
+* Concrete
+* Steel
+* Masonry
+* Roofing
+* Doors and windows
+* Finishes
 
 ## Labor Costs
 
@@ -35,10 +35,10 @@ Labor is another major component of most construction projects.
 
 Depending on the project, this can include:
 
-- Skilled workers
-- General labor
-- Foremen
-- Specialized trades
+* Skilled workers
+* General labor
+* Foremen
+* Specialized trades
 
 ## Materials
 
@@ -50,11 +50,11 @@ When preparing a budget, identify the expected quality and specifications rather
 
 Some projects require equipment such as:
 
-- Concrete mixers
-- Scaffolding
-- Cutting equipment
-- Lifting equipment
-- Specialized tools
+* Concrete mixers
+* Scaffolding
+* Cutting equipment
+* Lifting equipment
+* Specialized tools
 
 These costs should be considered when estimating the project.
 
@@ -62,11 +62,11 @@ These costs should be considered when estimating the project.
 
 Depending on the project, there may also be costs associated with:
 
-- Design
-- Engineering
-- Permits
-- Inspections
-- Professional services
+* Design
+* Engineering
+* Permits
+* Inspections
+* Professional services
 
 ## Contingency
 
